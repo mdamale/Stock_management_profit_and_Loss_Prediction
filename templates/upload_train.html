@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title> Train and Test Model </title>
+	<!-- Bootstrap core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Fontawesome CSS -->
+	<link href="css/all.css" rel="stylesheet">
+	<!-- Owl Carousel CSS -->
+	<link href="css/owl.carousel.min.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="css/style.css" rel="stylesheet">
+	<script>
+		function submitTest(){
+
+		var pn = document.getElementById('in').value;
+		var qty = document.getElementById('qty').value;
+		var price = document.getElementById('price').value;
+		var si = document.getElementById('si').value;
+		var tax = document.getElementById('tax').value;
+
+		var url = "http://127.0.0.1:5000/predict?product_id="+pn+"&qty="+qty+"&supplier_id="+si+"&price="+price+"&tax="+tax;
+		alert(url);
+		var xhttp = new XMLHttpRequest();
+
+		  xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status === 200) {
+			 alert(this.responseText);
+			 alert(document.getElementById("pr").style.display );
+				document.getElementById("pr").style.display = "block";
+				
+				document.getElementById("op").innerHTML = this.responseText;
+			 
+			 
+			 
+			}
+		  };
+		  xhttp.open("GET", url, true);
+		  xhttp.send();
+
+		}
+
+	</script>
+</head>
+<body>
+<div class="wrapper-main">
+	
+	<!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light top-nav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="fas fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link active" href="/home">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">PrPrediction</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="login.html">Logout</a>
+					</li>
+					
+				</ul>
+            </div>
+        </div>
+    </nav>
+	
+	<!-- full Title -->
+	<div class="full-title">
+		<div class="container">
+			<!-- Page Heading/Breadcrumbs -->
+			<h1 class="mt-4 mb-3"> Prediction</h1>
+			<div class="breadcrumb-main">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="/home">Home</a>
+					</li>
+					<li class="breadcrumb-item active"></li>
+				</ol>
+			</div>
+		</div>
+	</div>
+
+    <div class="container">
+		<!-- About Content -->
+		<div class="about-main">
+			<div class="row">
+				<div class="col-lg-6">
+					<img class="img-fluid rounded mb-4" src="images/supplychain.png" alt="" />
+				</div>
+				<div class="col-lg-6">
+					<h2>Provide your inputs</h2>
+					<form action = "/uploader" method = "POST" enctype = "multipart/form-data">
+        
+		
+						Product Number<input type="text" id="in" ><br>
+						Quantity<input type="text" id="qty"><br>
+						Price<input type="text" id="price"><br>
+						Supplier Id<input type="text" id="si"><br>
+						Tax<input type="text" id="tax"><br><br>
+
+						<input type="button" onclick="submitTest()" value="Submit" />
+
+
+
+
+
+
+
+
+        
+						</form>
+				</div>
+				
+			</div>
+			<div class="row" style="display:none" id="pr">
+				<div class="col-lg-6">
+					&nbsp;;
+				</div>
+				<div class="col-lg-6"><br><br>
+					<h3>Predicted result</h3>
+					<div id="op"></div>
+				</div>
+				
+			</div>
+			<!-- /.row -->
+		</div>
+	</div>
+	<div class="about-inner">
+		<div class="container">
+			<div class="row mb-4">
+				
+				
+			</div>
+			<div class="row">
+				
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- Contact Us -->
+	
+
+    <!--footer starts from here-->
+    <footer class="footer">
+        
+        <div class="container">
+            <p class="copyright text-center">All Rights Reserved. &copy; 2018 <a href="#">Train and Test</a> Design By : 
+				<a href="https://html.design/">html design</a>
+            </p>
+        </div>
+    </footer>
+</div>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery.appear.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
