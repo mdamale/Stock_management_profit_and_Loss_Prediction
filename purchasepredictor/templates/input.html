@@ -1,0 +1,36 @@
+Product Number<input type="text" id="in"><br>
+Quantity<input type="text" id="qty"><br>
+Price<input type="text" id="price"><br>
+Supplier Id<input type="text" id="si"><br>
+Tax<input type="text" id="tax"><br><br>
+
+<input type="button" onclick="submitTest()" value="submit" />
+
+
+<script>
+function submitTest(){
+
+var pn = document.getElementById('in').value;
+var qty = document.getElementById('qty').value;
+var price = document.getElementById('price').value;
+var si = document.getElementById('si').value;
+var tax = document.getElementById('tax').value;
+
+var url = "http://127.0.0.1:5000/predict?product_id="+pn+"&qty="+qty+"&supplier_id="+si+"&price="+price+"&tax="+tax;
+alert(url);
+var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 ) {
+     alert(this.responseText);
+    }
+  };
+  xhttp.open("GET", url, true);
+  xhttp.send();
+
+}
+
+</script>
+
+
+
